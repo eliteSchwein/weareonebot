@@ -12,7 +12,7 @@ module.exports = class HelloCommand extends SlashCommand {
                 type: CommandOptionType.CHANNEL,
                 name: 'channel',
                 description: 'Select a Channel to add/remove it as command channel.',
-                required: false
+                required: true
             }]
         });
         this.filePath = __filename;

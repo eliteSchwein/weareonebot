@@ -31,6 +31,7 @@ module.exports = class HelloCommand extends SlashCommand {
                 }
                 discordClient.setMusicDispatcher(connection.play(url))
                 discordClient.setVoiceConnection(connection)
+                discordClient.getMusicDispatcher().setVolume(0.5)
                 return `Time for ${name}, ${ctx.user.username}!`
             } else {
                 return `You are not in a Voice Channel, ${ctx.user.username}!`
