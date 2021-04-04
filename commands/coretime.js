@@ -26,12 +26,12 @@ module.exports = class HelloCommand extends SlashCommand {
             const member = (await discordClient.getClient().guilds.fetch(ctx.guildID)).members.fetch(ctx.user.id)
             if ((await member).voice.channel) {
                 const connection = await (await member).voice.channel.join();
-                if (typeof (discordClient.getMusicDispatcher()) !== 'undefined') {
-                    discordClient.getMusicDispatcher().destroy()
+                if (typeof (discordClient.getMusicDispatcher(ctx.guildID)) !== 'undefined') {
+                    discordClient.getMusicDispatcher(ctx.guildID).destroy()
                 }
-                discordClient.setMusicDispatcher(connection.play(url))
-                discordClient.setVoiceConnection(connection)
-                discordClient.getMusicDispatcher().setVolume(0.5)
+                discordClient.setMusicDispatcher(connection.play(url), ctx.guildID)
+                discordClient.setVoiceConnection(connection, ctx.guildID)
+                discordClient.getMusicDispatcher(ctx.guildID).setVolume(0.5)
                 return `Time for ${name}, ${ctx.user.username}!`
             } else {
                 return `You are not in a Voice Channel, ${ctx.user.username}!`

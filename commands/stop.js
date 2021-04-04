@@ -20,12 +20,12 @@ module.exports = class HelloCommand extends SlashCommand {
                 ctx.defer(true)
                 return `You cant execute this Command in this Channel, ${ctx.user.username}!`
             }
-            if (typeof (discordClient.getMusicDispatcher()) !== 'undefined') {
-                if (typeof (discordClient.getMusicDispatcher()) !== 'undefined') {
-                    discordClient.getMusicDispatcher().destroy()
-                    discordClient.setMusicDispatcher(undefined)
+            if (typeof (discordClient.getMusicDispatcher(ctx.guildID)) !== 'undefined') {
+                if (typeof (discordClient.getMusicDispatcher(ctx.guildID)) !== 'undefined') {
+                    discordClient.getMusicDispatcher(ctx.guildID).destroy()
+                    discordClient.setMusicDispatcher(undefined, ctx.guildID)
                 }
-                discordClient.getVoiceConnection().disconnect()
+                discordClient.getVoiceConnection(ctx.guildID).disconnect()
                 return `You stopped the good Music, ${ctx.user.username}!`
             }
             return `I play currently nothing, ${ctx.user.username}!`

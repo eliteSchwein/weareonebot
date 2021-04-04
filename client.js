@@ -5,8 +5,8 @@ const { waitUntil } = require('async-wait-until')
 
 const config = require('./config.json')
 
-let musicdispatcher
-let voiceconnection
+let musicdispatcher = {}
+let voiceconnection = {}
 
 const discordClient = new Discord.Client()
 
@@ -69,7 +69,7 @@ module.exports.init = async () => {
 }
 module.exports.isConnected = function() { return connected }
 module.exports.getClient = function () { return discordClient }
-module.exports.getMusicDispatcher = function () { return musicdispatcher }
-module.exports.setMusicDispatcher = function (dispatcher) { musicdispatcher = dispatcher }
-module.exports.getVoiceConnection = function () { return voiceconnection }
-module.exports.setVoiceConnection = function(connection) { voiceconnection = connection}
+module.exports.getMusicDispatcher = function (guildid) { return musicdispatcher[guildid] }
+module.exports.setMusicDispatcher = function (dispatcher, guildid) { musicdispatcher[guildid] = dispatcher }
+module.exports.getVoiceConnection = function (guildid) { return voiceconnection[guildid] }
+module.exports.setVoiceConnection = function(connection, guildid) { voiceconnection[guildid] = connection}

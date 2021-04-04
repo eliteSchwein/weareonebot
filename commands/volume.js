@@ -28,7 +28,7 @@ module.exports = class HelloCommand extends SlashCommand {
                 return `You cant execute this Command in this Channel, ${ctx.user.username}!`
             }
 
-            if (typeof (discordClient.getMusicDispatcher()) === 'undefined') {
+            if (typeof (discordClient.getMusicDispatcher(ctx.guildID)) === 'undefined') {
                 return `I play currently nothing, ${ctx.user.username}!`
             }
 
@@ -42,7 +42,7 @@ module.exports = class HelloCommand extends SlashCommand {
                 return `max Volume is 100%, ${ctx.user.username}!`
             }
 
-            discordClient.getMusicDispatcher().setVolume(newvolume)
+            discordClient.getMusicDispatcher(ctx.guildID).setVolume(newvolume)
 
             return `new Volume is ${newvolume * 100}%, ${ctx.user.username}!`
         }
