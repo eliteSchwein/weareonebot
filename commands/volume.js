@@ -44,7 +44,7 @@ module.exports = class HelloCommand extends SlashCommand {
 
             discordClient.getMusicDispatcher().setVolume(newvolume)
 
-            return `new Volume is ${newvolume}%, ${ctx.user.username}!`
+            return `new Volume is ${newvolume * 100}%, ${ctx.user.username}!`
         }
         catch (err) {
             console.log((err).error)
