@@ -44,9 +44,9 @@ module.exports = class HelloCommand extends SlashCommand {
             }
 
             if (channelresult) {
-                return `${channel} is now a Broadcast Channel, ${ctx.user.username}!`
+                return `${channel} is now a Command Channel, ${ctx.user.username}!`
             } else {
-                return `${channel} is not longer a Broadcast Channel, ${ctx.user.username}!`
+                return `${channel} is not longer a Command Channel, ${ctx.user.username}!`
             }
         }
         catch (err) {

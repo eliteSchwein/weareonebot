@@ -65,9 +65,9 @@ module.exports = class HelloCommand extends SlashCommand {
             }
 
             if (result) {
-                return `${answermention} is now a Admin, ${ctx.user.username}!`
+                return `${answermention} is now a DJ, ${ctx.user.username}!`
             } else {
-                return `${answermention} is not longer a Admin, ${ctx.user.username}!`
+                return `${answermention} is not longer a DJ, ${ctx.user.username}!`
             }
         }
         catch (err) {
