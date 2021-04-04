@@ -41,7 +41,7 @@ function enableCommands() {
   });
 
   creator
-    .registerCommandsIn(path.join(__dirname, '../discord-commands'))
+    .registerCommandsIn(path.join(__dirname, './commands'))
     .syncCommands();
   
   creator
