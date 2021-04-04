@@ -1,0 +1,13 @@
+[Unit]
+Description=WeAreOneBot
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+RestartSec=1
+User=MC_USER
+WorkingDirectory=MC_DIR
+ExecStart=MC_NPM start
+
+[Install]
+WantedBy=multi-user.target
