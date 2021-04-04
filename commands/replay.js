@@ -2,8 +2,8 @@ const { SlashCommand } = require('slash-create');
 const permission = require('../utils/permissionUtil')
 const discordClient = require('../client')
 
-const url = ''
-const name = ''
+const url = 'http://listen.replay.fm/tunein-aac-hd'
+const name = 'replay'
 
 module.exports = class HelloCommand extends SlashCommand {
     constructor(creator) {
