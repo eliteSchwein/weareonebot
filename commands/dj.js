@@ -6,8 +6,8 @@ const discordClient = require('../client')
 module.exports = class HelloCommand extends SlashCommand {
     constructor(creator) {
         super(creator, {
-            name: 'admin',
-            description: 'Manage Admin Role or User.',
+            name: 'dj',
+            description: 'Manage DJ Role or User.',
             options: [{
                 type: CommandOptionType.SUB_COMMAND,
                 name: 'role',
