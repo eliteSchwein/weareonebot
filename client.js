@@ -26,7 +26,7 @@ function loginBot() {
     connected = true
     console.log(`  ${'Discordbot Connected'.success}
     ${'Name:'.successname} ${(discordClient.user.tag).successvalue}
-    ${'Invite:'.successname} ${`https://discord.com/oauth2/authorize?client_id=${discordClient.user.id}&scope=applications.commands%20bot&permissions=336063568`.successvalue}`)
+    ${'Invite:'.successname} ${`https://discord.com/oauth2/authorize?client_id=${discordClient.user.id}&scope=applications.commands%20bot&permissions=2620451952`.successvalue}`)
     discordClient.user.setActivity('Printer start', { type: 'WATCHING' })
   })
 }
