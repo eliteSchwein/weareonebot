@@ -23,6 +23,7 @@ module.exports = class HelloCommand extends SlashCommand {
             if (typeof (discordClient.getMusicDispatcher()) !== 'undefined') {
                 if (typeof (discordClient.getMusicDispatcher()) !== 'undefined') {
                     discordClient.getMusicDispatcher().destroy()
+                    discordClient.setMusicDispatcher(undefined)
                 }
                 discordClient.getVoiceConnection().disconnect()
                 return `You stopped the good Music, ${ctx.user.username}!`
