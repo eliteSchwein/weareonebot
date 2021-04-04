@@ -5,6 +5,7 @@ const discordClient = require('../client')
 module.exports = class HelloCommand extends SlashCommand {
     constructor(creator) {
         super(creator, {
+            guildIDs: '793498992646291456',
             name: 'volume',
             description: 'Modify the volume (0-100%).',
             options: [{
@@ -27,7 +28,8 @@ module.exports = class HelloCommand extends SlashCommand {
                 return `You cant execute this Command in this Channel, ${ctx.user.username}!`
             }
 
-            const newvolume = (1.0/100)*ctx.options.volume
+            const newvolume = (1.0 / 100) * ctx.options.volume
+            console.log(newvolume)
 
             if (newvolume > 0) {
                 return `min Volume is 0%, ${ctx.user.username}!`
