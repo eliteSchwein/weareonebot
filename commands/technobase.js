@@ -25,7 +25,7 @@ module.exports = class HelloCommand extends SlashCommand {
             }
             const member = (await discordClient.getClient().guilds.fetch(ctx.guildID)).members.fetch(ctx.user.id)
             if ((await member).voice.channel) {
-                const connection = await message.member.voice.channel.join();
+                const connection = await (await member).voice.channel.join();
                 if (typeof (discordClient.getMusicDispatcher()) !== 'undefined') {
                     discordClient.getMusicDispatcher().destroy()
                 }
