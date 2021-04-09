@@ -6,6 +6,7 @@ const discordClient = require('../client')
 module.exports = class HelloCommand extends SlashCommand {
     constructor(creator) {
         super(creator, {
+            guildIDs: '793498992646291456',
             name: 'dj',
             description: 'Manage DJ Role or User.',
             options: [{
@@ -38,7 +39,7 @@ module.exports = class HelloCommand extends SlashCommand {
             if (typeof (ctx.guildID) === 'undefined') {
                 return `This Command is only aviable on a Guild, ${ctx.user.username}!`
             }
-
+            console.log(ctx.user)
             if (!permission.hasAdmin(ctx.user, ctx.guildID, discordClient)) {
                 return `You dont have the Permissions, ${ctx.user.username}!`
             }
