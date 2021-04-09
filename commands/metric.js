@@ -8,6 +8,7 @@ const database = require('../utils/databaseUtil')
 module.exports = class HelloCommand extends SlashCommand {
     constructor(creator) {
         super(creator, {
+            guildIDs: '793498992646291456',
             name: 'metric',
             description: 'Show how the Server listen.'
         });
@@ -31,10 +32,9 @@ module.exports = class HelloCommand extends SlashCommand {
                 .setTitle('Metric')
                 .setThumbnail('attachment://logo.png')
                 
-            const guild = discordClient.getClient().guilds.cache.get(ctx.guildID)
-            const guilddatabase = database.getGuildDatabase(guild)
+            const guilddatabase = database.getDatabase()[ctx.guildID]
 
-            console.log(guilddatabase.metric)
+            console.log(guilddatabase)
 
             for (let station in guilddatabase.metric) {
                 infoEmbed.addField(station, guilddatabase.metric[station], true)
