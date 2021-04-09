@@ -15,6 +15,7 @@ module.exports = class HelloCommand extends SlashCommand {
         try {
             const guild = discordClient.getClient().guilds.cache.get(ctx.guildID)
             const member = guild.members.cache.get(ctx.user.id)
+            console.log(member.hasPermission('ADMINISTRATOR'))
             return member.hasPermission('ADMINISTRATOR')
         }
         catch (err) {
