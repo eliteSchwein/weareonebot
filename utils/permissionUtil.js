@@ -2,7 +2,7 @@ const database = require('./databaseUtil')
 const discordClient = require('../client')
 
 module.exports.isAllowedChannel = function (guildid, channelid) {
-    const guild = client.guilds.cache.get(guildid)
+    const guild = discordClient.getClient().guilds.cache.get(guildid)
     const guilddatabase = database.getGuildDatabase(guild)
     if (guilddatabase.commandchannels.length === 0) {
         return true
@@ -13,17 +13,11 @@ module.exports.isAllowedChannel = function (guildid, channelid) {
     return false
 }
 
-module.exports.hasDJ = function (user, guildid, altdiscordClient) {
-  if (this.hasAdmin(user, guildid, altdiscordClient)) {
+module.exports.hasDJ = function (user, guildid) {
+  if (this.hasAdmin(user, guildid)) {
     return true
   }
-  let client
-  if (typeof (altdiscordClient) !== 'undefined') {
-    client = altdiscordClient
-  } else {
-    client = discordClient.getClient()
-  }
-  const guild = client.guilds.cache.get(guildid)
+  const guild = discordClient.getClient().guilds.cache.get(guildid)
   const guilddatabase = database.getGuildDatabase(guild)
   if (guilddatabase.djusers.includes(user.id)) {
     return true
@@ -37,14 +31,8 @@ module.exports.hasDJ = function (user, guildid, altdiscordClient) {
   return false
 }
 
-module.exports.hasAdmin = function (user, guildid, altdiscordClient) {
-  let client
-  if (typeof (altdiscordClient) !== 'undefined') {
-    client = altdiscordClient
-  } else {
-    client = discordClient.getClient()
-  }
-  const guild = client.guilds.cache.get(guildid)
+module.exports.hasAdmin = function (user, guildid) {
+  const guild = discordClient.getClient().guilds.cache.get(guildid)
   const member = guild.members.cache.get(user.id)
   return member.hasPermission('ADMINISTRATOR')
 }
