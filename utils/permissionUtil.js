@@ -15,7 +15,7 @@ module.exports.isAllowedChannel = async function (guildid, channelid) {
 }
 
 module.exports.hasDJ = async function (user, guildid, altdiscordClient) {
-  if (this.isMaster(user, guildid, altdiscordClient)) {
+  if (this.hasAdmin(user, guildid, altdiscordClient)) {
     return true
   }
   let client
@@ -38,7 +38,7 @@ module.exports.hasDJ = async function (user, guildid, altdiscordClient) {
   return false
 }
 
-module.exports.isMaster = function (user, guildid, altdiscordClient) {
+module.exports.hasAdmin = function (user, guildid, altdiscordClient) {
   let client
   if (typeof (altdiscordClient) !== 'undefined') {
     client = altdiscordClient
