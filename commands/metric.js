@@ -32,7 +32,7 @@ module.exports = class HelloCommand extends SlashCommand {
                 .setTitle('Metric')
                 .setThumbnail('attachment://logo.png')
             
-            console.log(database.getDatabase())
+            console.log(database.getDatabase().guilds[ctx.guildID])
                 
             const guilddatabase = database.getDatabase()[ctx.guildID]
 
