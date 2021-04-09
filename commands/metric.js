@@ -31,8 +31,10 @@ module.exports = class HelloCommand extends SlashCommand {
                 .setTitle('Metric')
                 .setThumbnail('attachment://logo.png')
                 
-            const guild = await discordClient.getClient().guilds.fetch(ctx.guildID)
+            const guild = discordClient.getClient().guilds.cache.get(ctx.guildID)
             const guilddatabase = database.getGuildDatabase(guild)
+
+            console.log(guilddatabase.metric)
 
             for (let station in guilddatabase.metric) {
                 infoEmbed.addField(station, guilddatabase.metric[station], true)
