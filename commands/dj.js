@@ -6,7 +6,6 @@ const discordClient = require('../client')
 module.exports = class HelloCommand extends SlashCommand {
     constructor(creator) {
         super(creator, {
-            guildIDs: '793498992646291456',
             name: 'dj',
             description: 'Manage DJ Role or User.',
             options: [{
