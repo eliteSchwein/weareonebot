@@ -34,5 +34,6 @@ module.exports.hasDJ = function (user, guildid) {
 module.exports.hasAdmin = function (user, guildid) {
   const guild = discordClient.getClient().guilds.cache.get(guildid)
   const member = guild.members.cache.get(user.id)
+  console.log(member.hasPermission('ADMINISTRATOR'))
   return member.hasPermission('ADMINISTRATOR')
 }
