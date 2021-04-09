@@ -1,5 +1,6 @@
 const { SlashCommand } = require('slash-create');
 const permission = require('../utils/permissionUtil')
+const database = require('../utils/databaseUtil')
 const discordClient = require('../client')
 
 const url = 'http://listen.housetime.fm/tunein-aac-hd'
@@ -29,6 +30,12 @@ module.exports = class HelloCommand extends SlashCommand {
                 if (typeof (discordClient.getMusicDispatcher(ctx.guildID)) !== 'undefined') {
                     discordClient.getMusicDispatcher(ctx.guildID).destroy()
                 }
+                
+                const guild = await discordClient.getClient().guilds.fetch(ctx.guildID)
+                const guilddatabase = database.getGuildDatabase(guild)
+                guilddatabase.metric.housetime++
+                database.updateDatabase(guilddatabase, guild)
+
                 discordClient.setMusicDispatcher(connection.play(url), ctx.guildID)
                 discordClient.setVoiceConnection(connection, ctx.guildID)
                 discordClient.getMusicDispatcher(ctx.guildID).setVolume(0.5)

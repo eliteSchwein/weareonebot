@@ -11,8 +11,18 @@ module.exports.getGuildDatabase = function (guild) {
     console.log(logSymbols.info, `No Database for ${guild.name} found!\nGenerate base config!`.database)
     database.guilds[guild.id] = {
       commandchannels: [],
-      adminusers: [],
-      adminroles: []
+      djusers: [],
+      djroles: [],
+      metric: {
+        "clubtime": 0,
+        "coretime": 0,
+        "hardbase": 0,
+        "housetime": 0,
+        "replay": 0,
+        "teatime": 0,
+        "technobase": 0,
+        "trancebase": 0
+      }
     }
     this.updateDatabase(database.guild[guild.id], guild)
   }
