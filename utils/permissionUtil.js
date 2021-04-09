@@ -1,4 +1,3 @@
-const config = require('../config.json')
 const database = require('./databaseUtil')
 const discordClient = require('../client')
 
