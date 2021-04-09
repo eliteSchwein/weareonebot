@@ -39,11 +39,10 @@ module.exports = class HelloCommand extends SlashCommand {
             if (typeof (ctx.guildID) === 'undefined') {
                 return `This Command is only aviable on a Guild, ${ctx.user.username}!`
             }
-            console.log(discordClient)
-            if (!permission.hasAdmin(ctx.user, ctx.guildID, discordClient)) {
+            if (!permission.hasAdmin(ctx.user, ctx.guildID)) {
                 return `You dont have the Permissions, ${ctx.user.username}!`
             }
-            if (!permission.isAllowedChannel(ctx.guildID, ctx.channelID, discordClient)) {
+            if (!permission.isAllowedChannel(ctx.guildID, ctx.channelID)) {
                 ctx.defer(true)
                 return `You cant execute this Command in this Channel, ${ctx.user.username}!`
             }
