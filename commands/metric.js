@@ -16,6 +16,10 @@ module.exports = class HelloCommand extends SlashCommand {
 
     async run(ctx) {
         try {
+            if (typeof (ctx.guildID) === 'undefined') {
+                return `This Command is only aviable on a Guild, ${ctx.user.username}!`
+            }
+
             ctx.defer(false)
         
             const logopath = path.resolve(__dirname, '../images/logo.png')
