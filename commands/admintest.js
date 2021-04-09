@@ -13,10 +13,8 @@ module.exports = class HelloCommand extends SlashCommand {
 
     async run(ctx) {
         try {
-            ctx.defer(false)
-
             const guild = discordClient.getClient().guilds.cache.get(ctx.guildID)
-            const member = await guild.members.fetch(ctx.user.id)
+            const member = guild.members.cache.get(ctx.user.id)
             return member.hasPermission('ADMINISTRATOR')
         }
         catch (err) {
