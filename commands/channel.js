@@ -32,8 +32,6 @@ module.exports = class HelloCommand extends SlashCommand {
                 return `You cant execute this Command in this Channel, ${ctx.user.username}!`
             }
 
-            console.log('test')
-
             let channel
             let channelresult
 
