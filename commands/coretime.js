@@ -37,7 +37,7 @@ module.exports = class HelloCommand extends SlashCommand {
 
                 const guilddatabase = database.getDatabase().guilds[ctx.guildID]
                 guilddatabase.metric.coretime++
-                database.updateDatabase(guilddatabase, guild)
+                database.updateDatabase(guilddatabase, await discordClient.getClient().guilds.fetch(ctx.guildID))
 
                 discordClient.setMusicDispatcher(connection.play(url), ctx.guildID)
                 discordClient.setVoiceConnection(connection, ctx.guildID)
