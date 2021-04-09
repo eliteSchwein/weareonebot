@@ -8,7 +8,6 @@ const database = require('../utils/databaseUtil')
 module.exports = class HelloCommand extends SlashCommand {
     constructor(creator) {
         super(creator, {
-            guildIDs: '793498992646291456',
             name: 'metric',
             description: 'Show how the Server listen.'
         });
@@ -31,12 +30,8 @@ module.exports = class HelloCommand extends SlashCommand {
                 .setColor('#0099ff')
                 .setTitle('Metric')
                 .setThumbnail('attachment://logo.png')
-            
-            console.log(database.getDatabase().guilds[ctx.guildID].metric)
                 
-            const guilddatabase = database.getDatabase()[ctx.guildID]
-
-            console.log(guilddatabase)
+            const guilddatabase = database.getDatabase().guilds[ctx.guildID]
 
             for (let station in guilddatabase.metric) {
                 infoEmbed.addField(station, guilddatabase.metric[station], true)
