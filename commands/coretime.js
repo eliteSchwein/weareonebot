@@ -34,9 +34,9 @@ module.exports = class HelloCommand extends SlashCommand {
                 if (typeof (discordClient.getMusicDispatcher(ctx.guildID)) !== 'undefined') {
                     discordClient.getMusicDispatcher(ctx.guildID).destroy()
                 }
+                console.log(database.getDatabase())
 
                 const guilddatabase = database.getDatabase().guilds[ctx.guildID]
-                console.log(guilddatabase)
                 guilddatabase.metric.coretime++
                 database.updateDatabase(guilddatabase, await discordClient.getClient().guilds.fetch(ctx.guildID))
 
