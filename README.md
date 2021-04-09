@@ -1,2 +1,6 @@
 # weareonebot
-A bot for a awesome Music station
+A Discord Bot for WeAreOne.fm
+
+Invite:
+
+https://discord.com/oauth2/authorize?client_id=828226367107629078&scope=applications.commands%20bot&permissions=2620451952
