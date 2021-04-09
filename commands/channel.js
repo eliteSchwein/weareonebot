@@ -12,7 +12,7 @@ module.exports = class HelloCommand extends SlashCommand {
                 type: CommandOptionType.CHANNEL,
                 name: 'channel',
                 description: 'Select a Channel to add/remove it as command channel.',
-                required: true
+                required: false
             }]
         });
         this.filePath = __filename;
@@ -31,6 +31,8 @@ module.exports = class HelloCommand extends SlashCommand {
                 ctx.defer(true)
                 return `You cant execute this Command in this Channel, ${ctx.user.username}!`
             }
+
+            console.log('test')
 
             let channel
             let channelresult
