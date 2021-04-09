@@ -15,7 +15,7 @@ module.exports.isAllowedChannel = async function (guildid, channelid) {
 }
 
 module.exports.hasDJ = async function (user, guildid, altdiscordClient) {
-  if (config.masterid.includes(user.id)) {
+  if (this.isMaster(user, guildid, altdiscordClient)) {
     return true
   }
   let client
@@ -24,12 +24,12 @@ module.exports.hasDJ = async function (user, guildid, altdiscordClient) {
   } else {
     client = discordClient.getClient()
   }
-  const guild = await client.guilds.fetch(guildid)
+  const guild = client.guilds.cache.get(guildid)
   const guilddatabase = database.getGuildDatabase(guild)
   if (guilddatabase.djusers.includes(user.id)) {
     return true
   }
-  const member = await guild.members.fetch(user.id)
+  const member = guild.members.cache.get(user.id)
   for (const memberole in member.roles.cache) {
     if (guilddatabase.djroles.includes(memberole)) {
       return true
@@ -38,6 +38,14 @@ module.exports.hasDJ = async function (user, guildid, altdiscordClient) {
   return false
 }
 
-module.exports.isMaster = function (user) {
-  return config.masterid.includes(user.id)
+module.exports.isMaster = function (user, guildid, altdiscordClient) {
+  let client
+  if (typeof (altdiscordClient) !== 'undefined') {
+    client = altdiscordClient
+  } else {
+    client = discordClient.getClient()
+  }
+  const guild = client.guilds.cache.get(guildid)
+  const member = guild.members.cache.get(user.id)
+  return member.hasPermission('ADMINISTRATOR')
 }
