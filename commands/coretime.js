@@ -21,7 +21,7 @@ module.exports = class HelloCommand extends SlashCommand {
                 return `This Command is only aviable on a Guild, ${ctx.user.username}!`
             }
 
-            if (!apermission.hasDJ(ctx.user, ctx.guildID)) {
+            if (!permission.hasDJ(ctx.user, ctx.guildID)) {
                 return `You dont have the Permissions, ${ctx.user.username}!`
             }
             if (!permission.isAllowedChannel(ctx.guildID, ctx.channelID)) {
@@ -34,7 +34,6 @@ module.exports = class HelloCommand extends SlashCommand {
                 if (typeof (discordClient.getMusicDispatcher(ctx.guildID)) !== 'undefined') {
                     discordClient.getMusicDispatcher(ctx.guildID).destroy()
                 }
-                console.log(database.getDatabase())
 
                 const guilddatabase = database.getDatabase().guilds[ctx.guildID]
                 guilddatabase.metric.coretime++
