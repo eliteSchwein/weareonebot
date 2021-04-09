@@ -2,16 +2,18 @@ const database = require('./databaseUtil')
 const discordClient = require('../client')
 
 module.exports.isAllowedChannel = function (guildid, channelid) {
-    const guild = discordClient.getClient().guilds.cache.get(guildid)
+  const guild = discordClient.getClient().guilds.cache.get(guildid)
   const guilddatabase = database.getGuildDatabase(guild)
-  console.log(guilddatabase)
-    if (guilddatabase.commandchannels.length === 0) {
-        return true
-    }
-    if (guilddatabase.commandchannels.includes(channelid)) {
-        return true
-    }
-    return false
+  if (typeof (guilddatabase.commandchannels) === 'undefined') {
+    return true
+  }
+  if (guilddatabase.commandchannels.length === 0) {
+      return true
+  }
+  if (guilddatabase.commandchannels.includes(channelid)) {
+      return true
+  }
+  return false
 }
 
 module.exports.hasDJ = function (user, guildid) {
