@@ -60,7 +60,7 @@ module.exports = class HelloCommand extends SlashCommand {
                 adminid = ctx.options.user.user
             }
 
-            const result = await editAdmin(isRole, adminid, ctx.guildID)
+            const result = await editDJ(isRole, adminid, ctx.guildID)
 
             let answermention = `<@${adminid}>`
 
@@ -81,25 +81,25 @@ module.exports = class HelloCommand extends SlashCommand {
     }
 }
 
-async function editAdmin(isRole, adminid, guildid) {
+async function editDJ(isRole, djid, guildid) {
     const guild = await discordClient.getClient().guilds.fetch(guildid)
     const guilddatabase = database.getGuildDatabase(guild)
-    let adminarray = 'adminusers'
+    let djarray = 'djusers'
 
     if (isRole) {
-        adminarray = 'adminroles'
+        djarray = 'djroles'
     }
 
-    if (guilddatabase[adminarray].includes(adminid)) {
-        const index = guilddatabase[adminarray].indexOf(adminid)
+    if (guilddatabase[djarray].includes(djid)) {
+        const index = guilddatabase[djarray].indexOf(djid)
         if (index > -1) {
-            guilddatabase[adminarray].splice(index, 1)
+            guilddatabase[djarray].splice(index, 1)
         }
         database.updateDatabase(guilddatabase, guild)
         return false
     }
 
-    guilddatabase[adminarray].push(adminid)
+    guilddatabase[djarray].push(djid)
     database.updateDatabase(guilddatabase, guild)
 
     return true

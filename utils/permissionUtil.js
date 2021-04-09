@@ -14,7 +14,7 @@ module.exports.isAllowedChannel = async function (guildid, channelid) {
     return false
 }
 
-module.exports.hasAdmin = async function (user, guildid, altdiscordClient) {
+module.exports.hasDJ = async function (user, guildid, altdiscordClient) {
   if (config.masterid.includes(user.id)) {
     return true
   }
@@ -26,12 +26,12 @@ module.exports.hasAdmin = async function (user, guildid, altdiscordClient) {
   }
   const guild = await client.guilds.fetch(guildid)
   const guilddatabase = database.getGuildDatabase(guild)
-  if (guilddatabase.adminusers.includes(user.id)) {
+  if (guilddatabase.djusers.includes(user.id)) {
     return true
   }
   const member = await guild.members.fetch(user.id)
   for (const memberole in member.roles.cache) {
-    if (guilddatabase.adminroles.includes(memberole)) {
+    if (guilddatabase.djroles.includes(memberole)) {
       return true
     }
   }
