@@ -31,6 +31,8 @@ module.exports = class HelloCommand extends SlashCommand {
                 .setColor('#0099ff')
                 .setTitle('Metric')
                 .setThumbnail('attachment://logo.png')
+            
+            console.log(database.getDatabase())
                 
             const guilddatabase = database.getDatabase()[ctx.guildID]
 
