@@ -21,10 +21,10 @@ module.exports = class HelloCommand extends SlashCommand {
                 return `This Command is only aviable on a Guild, ${ctx.user.username}!`
             }
 
-            if (!await permission.hasDJ(ctx.user, ctx.guildID)) {
+            if (!permission.hasDJ(ctx.user, ctx.guildID)) {
                 return `You dont have the Permissions, ${ctx.user.username}!`
             }
-            if (!await permission.isAllowedChannel(ctx.guildID, ctx.channelID)) {
+            if (!permission.isAllowedChannel(ctx.guildID, ctx.channelID)) {
                 ctx.defer(true)
                 return `You cant execute this Command in this Channel, ${ctx.user.username}!`
             }

@@ -1,8 +1,8 @@
 const database = require('./databaseUtil')
 const discordClient = require('../client')
 
-module.exports.isAllowedChannel = async function (guildid, channelid) {
-    const guild = await discordClient.getClient().guilds.fetch(guildid)
+module.exports.isAllowedChannel = function (guildid, channelid) {
+    const guild = client.guilds.cache.get(guildid)
     const guilddatabase = database.getGuildDatabase(guild)
     if (guilddatabase.commandchannels.length === 0) {
         return true
@@ -13,7 +13,7 @@ module.exports.isAllowedChannel = async function (guildid, channelid) {
     return false
 }
 
-module.exports.hasDJ = async function (user, guildid, altdiscordClient) {
+module.exports.hasDJ = function (user, guildid, altdiscordClient) {
   if (this.hasAdmin(user, guildid, altdiscordClient)) {
     return true
   }
