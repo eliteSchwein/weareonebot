@@ -23,7 +23,7 @@ module.exports = class HelloCommand extends SlashCommand {
                 return `This Command is only aviable on a Guild, ${ctx.user.username}!`
             }
 
-            if (!permission.hasDJ(ctx.user, ctx.guildID)) {
+            if (!await permission.hasDJ(ctx.user, ctx.guildID)) {
                 return `You dont have the Permissions, ${ctx.user.username}!`
             }
 

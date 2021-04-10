@@ -2,8 +2,7 @@ const database = require('./databaseUtil')
 const discordClient = require('../client')
 
 module.exports.isAllowedChannel = function (guildid, channelid) {
-  const guild = discordClient.getClient().guilds.cache.get(guildid)
-  const guilddatabase = database.getGuildDatabase(guild)
+  const guilddatabase = database.getDatabase().guilds[guildid]
   if (typeof (guilddatabase.commandchannels) === 'undefined') {
     return true
   }
@@ -16,16 +15,16 @@ module.exports.isAllowedChannel = function (guildid, channelid) {
   return false
 }
 
-module.exports.hasDJ = function (user, guildid) {
-  if (this.hasAdmin(user, guildid)) {
+module.exports.hasDJ = async function (user, guildid) {
+  if (await this.hasAdmin(user, guildid)) {
     return true
   }
-  const guild = discordClient.getClient().guilds.cache.get(guildid)
+  const guild = await discordClient.getClient().guilds.fetch(guildid)
   const guilddatabase = database.getGuildDatabase(guild)
   if (guilddatabase.djusers.includes(user.id)) {
     return true
   }
-  const member = guild.members.cache.get(user.id)
+  const member = await guild.members.fetch(user.id)
   for (const memberole in member.roles.cache) {
     if (guilddatabase.djroles.includes(memberole)) {
       return true
@@ -34,8 +33,10 @@ module.exports.hasDJ = function (user, guildid) {
   return false
 }
 
-module.exports.hasAdmin = function (user, guildid) {
-  const guild = discordClient.getClient().guilds.cache.get(guildid)
-  const member = guild.members.cache.get(user.id)
+module.exports.hasAdmin = async function (user, guildid) {
+  const guild = discordClient.getClient().guilds.fetch(guildid)
+  console.log(guild)
+  const member = guild.members.fetch(user.id)
+  console.log(member)
   return member.hasPermission('ADMINISTRATOR')
 }
