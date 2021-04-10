@@ -23,14 +23,16 @@ module.exports = class HelloCommand extends SlashCommand {
             if (typeof (ctx.guildID) === 'undefined') {
                 return `This Command is only aviable on a Guild, ${ctx.user.username}!`
             }
-
+            console.log('test1')
             if (!permission.hasAdmin(ctx.user, ctx.guildID)) {
                 return `You dont have the Permissions, ${ctx.user.username}!`
             }
+            console.log('test2')
             if (!permission.isAllowedChannel(ctx.guildID, ctx.channelID)) {
                 ctx.defer(true)
                 return `You cant execute this Command in this Channel, ${ctx.user.username}!`
             }
+            console.log('test3')
 
             let channel
             let channelresult
