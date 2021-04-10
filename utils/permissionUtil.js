@@ -36,6 +36,5 @@ module.exports.hasDJ = async function (user, guildid) {
 module.exports.hasAdmin = async function (user, guildid) {
   const guild = await discordClient.getClient().guilds.fetch(guildid)
   const member = await guild.members.fetch(user.id)
-  console.log(member.hasPermission('ADMINISTRATOR'))
   return member.hasPermission('ADMINISTRATOR')
 }
