@@ -1,8 +1,9 @@
 const database = require('./databaseUtil')
 const discordClient = require('../client')
 
-module.exports.isAllowedChannel = function (guildid, channelid) {
-  const guilddatabase = database.getDatabase().guilds[guildid]
+module.exports.isAllowedChannel = async function (guildid, channelid) {
+  const guild = await discordClient.getClient().guilds.fetch(guildid)
+  const guilddatabase = database.getDatabase(guild)
   if (typeof (guilddatabase.commandchannels) === 'undefined') {
     return true
   }

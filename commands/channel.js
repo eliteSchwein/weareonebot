@@ -27,7 +27,7 @@ module.exports = class HelloCommand extends SlashCommand {
                 return `You dont have the Permissions, ${ctx.user.username}!`
             }
             console.log('test1')
-            if (!permission.isAllowedChannel(ctx.guildID, ctx.channelID)) {
+            if (!await permission.isAllowedChannel(ctx.guildID, ctx.channelID)) {
                 ctx.defer(true)
                 return `You cant execute this Command in this Channel, ${ctx.user.username}!`
             }
