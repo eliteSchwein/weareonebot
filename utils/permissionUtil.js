@@ -26,10 +26,8 @@ module.exports.hasDJ = async function (user, guildid) {
     return true
   }
   const member = await guild.members.fetch(user.id)
-  for (const memberole in member.roles.cache) {
-    if (guilddatabase.djroles.includes(memberole)) {
-      return true
-    }
+  if (guilddatabase.djroles.some(role => member.roles.cache.has(role))) {
+    return true
   }
   return false
 }
