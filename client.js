@@ -27,7 +27,7 @@ function loginBot() {
     console.log(`  ${'Discordbot Connected'.success}
     ${'Name:'.successname} ${(discordClient.user.tag).successvalue}
     ${'Invite:'.successname} ${`https://discord.com/oauth2/authorize?client_id=${discordClient.user.id}&scope=applications.commands%20bot&permissions=2620451952`.successvalue}`)
-    discordClient.user.setActivity('WeAreOne.fm', { type: 'LISTENING' })
+    discordClient.user.setActivity('WeAreOne', { type: 'LISTENING' })
   })
 }
 
