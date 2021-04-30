@@ -1,5 +1,5 @@
 # weareonebot
-A Discord Bot for WeAreOne.fm
+A Discord Bot for WeAreOne
 
 Invite:
 
